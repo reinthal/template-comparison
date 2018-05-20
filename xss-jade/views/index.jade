@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1 XSS Testing of Jade
+    img(src='/images/jade_logo.png')
+  section(class="input")
+    form(action="/input" method="post")
+      div(class="input")
+        label(for="type") Context
+        input(type="text" id="type" name="type")
+      div(class="input")
+        label(for="content") Content
+        input(type="text" id="content" name="content")
+      button(type="submit") SEND
+  section(class="output")
+    h3 Input Display
+    if html
+      div
+        div
+          b Context: #{type}
+        article(class="item")
+          div=content
+    else if script
+      script.
+          alert(#{content});
+    else if href
+      a(href=content) Click this link!
+    else if css
+      div deprecated!
+    else
+      div Not Defined

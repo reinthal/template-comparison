@@ -1,0 +1,48 @@
+<h1>XSS Testing of HandleBars <img src="images/handlebars_logo.png"></h1>
+<section class="input">
+    <form action="/input" method="post">
+        <div class="input">
+            <label for="type">Context</label>
+            <input type="text" id="type" name="type">
+        </div>
+        <div class="input">
+            <label for="content">Content</label>
+            <input type="text" id="content" name="content">
+        </div>
+        <button type="submit">SEND</button>
+    </form>
+</section >
+<section class="output">
+    <h3>Input Display</h3>
+    {{#if html}}
+        <div>
+            <div>Context: {{ this.type }}</div>
+            <article class="item">
+                <div> {{ this.content }}</div>
+            </article>
+        </div>
+    {{/if}}
+    {{#if script}}
+        <script>
+            alert({{ this.content }}); // some code :>
+        </script>
+    {{/if}}
+    {{#if href}}
+        Here is a  <a href={{ this.content}}>link</a>
+    {{/if}}
+    {{#if css}}
+        <span style="color:  {{this.content}}">
+            <h1>Your content has some color</h1>
+        </span>
+    {{/if}}
+
+</section>
+<section class="types">
+    <h1>Input can have the following contexts</h1>
+    <ul>
+        <li> <b>script</b> - example: Alert! </li>
+        <li> <b>href</b> - example:  http://www.cse.chalmers.se/ </li>
+        <li> <b>html</b> - example: Hello World </li>
+        <li> <b>css</b> -  example: #2ecc71  </li>
+    </ul>
+</section>
