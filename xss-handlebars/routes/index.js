@@ -12,18 +12,24 @@ router.post('/input', function(req, res, next){
         type: req.body.type,
         content: req.body.content,
         script: false,
+        script_pseudo: false,
+        script_safe: false,
         html: false,
         href: false,
         css: false
     };
     if(item.type == "script") {
-      item.script = true;
+        item.script = true;
     } else if(item.type == "html") {
-      item.html = true;
+        item.html = true;
     } else if (item.type == "href") {
-      item.href = true;
+        item.href = true;
     } else if (item.type == "css") {
-      item.css = true;
+        item.css = true;
+    } else if (item.type == "script_pseudo") {
+        item.script_pseudo = true;
+    } else if (item.type == "script_safe") {
+        item.script_safe = true;
     }
     res.render('index', item);
 });

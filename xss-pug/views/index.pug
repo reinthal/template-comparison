@@ -23,6 +23,12 @@ block content
     else if script
       script.
           alert(#{content});
+    else if script_pseudo
+      script.
+          alert(`#{content}`);
+    else if script_safe
+      script.
+          alert("#{content}");
     else if href
       a(href=content) Click this link!
     else if css

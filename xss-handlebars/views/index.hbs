@@ -23,26 +23,25 @@
         </div>
     {{/if}}
     {{#if script}}
-        <script>
+        <script> <!-- Unsafe -->
             alert({{ this.content }}); // some code :>
         </script>
     {{/if}}
+    {{#if script_pseudo}}
+        <script> <!-- peudo-safe -->
+        alert(`{{ this.content }}`); // some code :>
+        </script>
+    {{/if}}
+    {{#if script_safe}}
+        <script> <!-- safe -->
+        alert("{{ this.content }}"); // some code :>
+        </script>
+    {{/if}}
     {{#if href}}
-        Here is a  <a href={{ this.content}}>link</a>
+        Here is a  <a href={{ this.content }}>link</a>
     {{/if}}
     {{#if css}}
         <span style="color:  {{this.content}}">
             <h1>Your content has some color</h1>
         </span>
     {{/if}}
-
-</section>
-<section class="types">
-    <h1>Input can have the following contexts</h1>
-    <ul>
-        <li> <b>script</b> - example: Alert! </li>
-        <li> <b>href</b> - example:  http://www.cse.chalmers.se/ </li>
-        <li> <b>html</b> - example: Hello World </li>
-        <li> <b>css</b> -  example: #2ecc71  </li>
-    </ul>
-</section>
